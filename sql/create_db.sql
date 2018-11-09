@@ -1,3 +1,9 @@
+/*
+ * HibernateMaven.
+ *
+ * @author giuliobosco
+ * @version 1.0
+ */
 DROP DATABASE IF EXISTS tutorialDb;
 CREATE DATABASE tutorialDb;
 
