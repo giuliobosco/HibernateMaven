@@ -4,16 +4,21 @@
  * @author giuliobosco
  * @version 1.0
  */
-DROP DATABASE IF EXISTS tutorialDb;
-CREATE DATABASE tutorialDb;
+DROP DATABASE IF EXISTS addtodatabase;
+CREATE DATABASE addtodatabase;
 
-USE tutorialDb;
+USE addtodatabase;
 
-CREATE TABLE tutorialDb.user_table (
-	user_id      INT(20)      NOT NULL,
-	user_name    VARCHAR(255) NOT NULL,
-	created_by   VARCHAR(255) NOT NULL,
-	created_date DATE         NOT NULL,
+CREATE TABLE utenti(
+	ID INT PRIMARY KEY,
+    nome VARCHAR (50),
+    cognome VARCHAR (50),
+    anni INT
+);
 
-	PRIMARY KEY (user_id)
+CREATE TABLE amministratore(
+	ID INT PRIMARY KEY ,
+    id_utente INT,
+    nome VARCHAR (50),
+    FOREGIN KEY(id_utente) REFERENCES utenti(ID)
 );
