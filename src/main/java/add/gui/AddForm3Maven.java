@@ -23,16 +23,14 @@
  */
 package add.gui;
 
-import add.entity.Utenti;
-import add.util.HibernateUtil;
-import org.hibernate.Session;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.WindowConstants;
+import java.awt.Dimension;
 
 /**
+ * AddForm3Maven test form.
+ *
  * @author giuliobosco
  * @version 1.0
  */
@@ -40,109 +38,47 @@ public class AddForm3Maven extends JFrame {
     // -------------------------------------------------------------------------------------------------------- Costants
     // ------------------------------------------------------------------------------------------------------ Attributes
 
+    /**
+     * Tabbed pane.
+     */
     private JTabbedPane tabbedPane = new JTabbedPane();
-
-    private JPanel usersPanel;
-    private JLabel uTitleLabel;
-    private JLabel uEmpty;
-    private JLabel uNameLabel;
-    private JLabel uSurnameLabel;
-    private JLabel uEtaLabel;
-    private JTextField uNameTextFiled;
-    private JTextField uSurnameTextFiled;
-    private JSpinner uEtaSpinner;
-    private JButton uSendButton;
-    private JLabel testLabel;
-
-    private JPanel administrationPanel;
-    private JLabel aNameLabel;
-    private JTextField aNameTextField;
-    private JButton aSearchButton;
-    private JScrollPane aUserScrollPane;
-    private JTable aUserTable;
 
     // ----------------------------------------------------------------------------------------------- Getters & Setters
     // ---------------------------------------------------------------------------------------------------- Constructors
 
+    /**
+     * AddForm3Maven, initialize components.
+     */
     public AddForm3Maven() {
         initComponents();
     }
 
     // ---------------------------------------------------------------------------------------------------- Help Methods
 
+    /**
+     * Initialize components.
+     */
     private void initComponents() {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(300, 200));
 
         tabbedPane = new JTabbedPane();
 
-        usersPanel = new JPanel();
-        usersPanel.setPreferredSize(new Dimension(415, 270));
-        usersPanel.setLayout(new GridLayout(5, 2));
-
-        uTitleLabel = new JLabel();
-        uTitleLabel.setText("User Data");
-        usersPanel.add(this.uTitleLabel);
-
-        this.uEmpty = new JLabel();
-        this.uEmpty.setText("empty");
-        usersPanel.add(this.uEmpty);
-
-        this.uNameLabel = new JLabel();
-        this.uNameLabel.setText("Name:");
-        this.usersPanel.add(this.uNameLabel);
-
-        this.uNameTextFiled = new JTextField();
-        this.uNameTextFiled.setText("name");
-        this.usersPanel.add(this.uNameTextFiled);
-
-        this.uSurnameLabel = new JLabel();
-        this.uSurnameLabel.setText("Surname:");
-        this.usersPanel.add(this.uSurnameLabel);
-
-        this.uSurnameTextFiled = new JTextField();
-        this.uSurnameTextFiled.setText("surname");
-        this.usersPanel.add(this.uSurnameTextFiled);
-
-        this.uEtaLabel = new JLabel();
-        this.uEtaLabel.setText("eta:");
-        this.usersPanel.add(this.uEtaLabel);
-
-        this.uEtaSpinner = new JSpinner();
-        this.usersPanel.add(this.uEtaSpinner );
-
-        this.uSendButton = new JButton();
-        this.uSendButton.setText("Send");
-        this.uSendButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                uSendButtonActionPerformed(evt);
-            }
-        });
-        this.usersPanel.add(this.uSendButton);
-
-        this.tabbedPane.addTab("User", null, this.usersPanel, "");
+        this.tabbedPane.addTab("User", null, new UserPanel(), "");
 
         this.getContentPane().add(this.tabbedPane);
 
         pack();
     }
 
-    private void uSendButtonActionPerformed(ActionEvent e) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-
-        Utenti user = new Utenti();
-        user.setNome(this.uNameTextFiled.getText());
-        user.setCognome(this.uSurnameTextFiled.getText());
-        user.setAnni((Integer) (uEtaSpinner.getValue()));
-
-        session.save(user);
-        session.getTransaction().commit();
-    }
-
     // ------------------------------------------------------------------------------------------------- General Methods
     // ----------------------------------------------------------------------------------------------- Static Components
 
+    /**
+     * Main Application Methods, run the APP.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
