@@ -103,7 +103,7 @@ public class UserPanel extends JPanel {
      * Initialize components.
      */
     private void initComponents() {
-        this.setLayout(new GridLayout(5,2));
+        this.setLayout(new GridLayout(5, 2));
 
         this.titleLabel = new JLabel();
         this.titleLabel.setText("User data");
@@ -163,5 +163,5 @@ public class UserPanel extends JPanel {
 
     // ------------------------------------------------------------------------------------------------- General Methods
     // ----------------------------------------------------------------------------------------------- Static Components
-    
+
 }
