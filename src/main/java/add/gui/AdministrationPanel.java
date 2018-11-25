@@ -40,7 +40,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
- * 
+ * Administration panel.
+ *
  * @author giuliobosco
  * @version 1.0
  */
@@ -48,22 +49,51 @@ public class AdministrationPanel  extends JPanel {
     // -------------------------------------------------------------------------------------------------------- Costants
     // ------------------------------------------------------------------------------------------------------ Attributes
 
+    /**
+     * Search bar panel.
+     */
     private JPanel searchBarPanel;
+
+    /**
+     * Name to search label.
+     */
     private JLabel nameLabel;
+
+    /**
+     * Name to search text field.
+     */
     private JTextField nameTextField;
+
+    /**
+     * Search Button, execute query on database.
+     */
     private JButton searchButton;
+
+    /**
+     * Scrollable pane for the users table.
+     */
     private JScrollPane userScrollPane;
+
+    /**
+     * Users table.
+     */
     private JTable userTable;
 
     // ----------------------------------------------------------------------------------------------- Getters & Setters
     // ---------------------------------------------------------------------------------------------------- Constructors
 
+    /**
+     * Administration Panel, initialize components.
+     */
     public AdministrationPanel() {
         initComponents();
     }
 
     // ---------------------------------------------------------------------------------------------------- Help Methods
 
+    /**
+     * Initialize components.
+     */
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
@@ -107,6 +137,11 @@ public class AdministrationPanel  extends JPanel {
         this.add(this.userScrollPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Display the result of the query.
+     *
+     * @param resultList List of results to display.
+     */
     private void displayResult(ArrayList<Amministratore> resultList) {
         Vector<String> tableHeaders = new Vector<String>();
 
@@ -123,6 +158,9 @@ public class AdministrationPanel  extends JPanel {
         this.userTable.setModel(new DefaultTableModel(tableData, tableHeaders));
     }
 
+    /**
+     * Execute the query and display the result.
+     */
     private void executeHQLQuery() {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -140,6 +178,11 @@ public class AdministrationPanel  extends JPanel {
         }
     }
 
+    /**
+     * Search button action performed, execute query and display the result.
+     *
+     * @param e Search button action performed event.
+     */
     private void searchButtonActionPerformed(ActionEvent e) {
         if (!nameTextField.getText().trim().equals("")) {
             this.executeHQLQuery();
