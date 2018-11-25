@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25-lug-2018 11:53:25 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+	<class name="add.entity.Utenti" table="utenti" catalog="addtodatabase" optimistic-lock="version">
+		<id name="id" type="java.lang.Integer">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="nome" type="string">
+			<column name="nome" length="50" />
+		</property>
+		<property name="cognome" type="string">
+			<column name="cognome" length="50" />
+		</property>
+		<property name="anni" type="java.lang.Integer">
+			<column name="anni" />
+		</property>
+		<set name="amministratores" table="amministratore" inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="id_utente" />
+			</key>
+			<one-to-many class="add.entity.Amministratore" />
+		</set>
+	</class>
+</hibernate-mapping>
