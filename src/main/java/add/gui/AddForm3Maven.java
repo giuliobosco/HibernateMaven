@@ -65,6 +65,7 @@ public class AddForm3Maven extends JFrame {
         tabbedPane = new JTabbedPane();
 
         this.tabbedPane.addTab("User", null, new UserPanel(), "");
+        this.tabbedPane.addTab("User", null, new AdministrationPanel(), "");
 
         this.getContentPane().add(this.tabbedPane);
 
