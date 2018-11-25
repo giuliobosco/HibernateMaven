@@ -24,10 +24,14 @@
 package add.util;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+
+import java.io.File;
 
 /**
- * 
+ *
  * @author giuliobosco
  * @version 1.0
  */
@@ -45,8 +49,20 @@ public class HibernateUtil {
         try {
             // Create the SessionFactory from standard (hibernate.cfg.xml)
             // config file.
-            // sessionFactory = new Configuration().configure("/hib.cfg.xml").buildSessionFactory();
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+             //sessionFactory = new Configuration().configure("target/classes/hibernate.cfg.xml").buildSessionFactory();
+            //sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
+
+            String hibernatePropsFilePath = "target/classes/hibernate.cfg.xml";
+            File hibernatePropsFile = new File(hibernatePropsFilePath);
+
+            Configuration configuration = new Configuration();
+            configuration.configure(hibernatePropsFile);
+
+            StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+
+            ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();
+
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
         } catch (Throwable ex) {
             // Log the exception.
             System.err.println("Initial SessionFactory creation failed." + ex);
