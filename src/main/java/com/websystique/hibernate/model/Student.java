@@ -87,6 +87,7 @@ public class Student implements Serializable {
     // ---------------------------------------------------------------------------------------------------- Constructors
     // ---------------------------------------------------------------------------------------------------- Help Methods
 
+    @Override
     public int hashCode() {
         final int prime = 31;
         int n = 1;
@@ -94,6 +95,7 @@ public class Student implements Serializable {
         return prime * n + id;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -108,6 +110,7 @@ public class Student implements Serializable {
         return true;
     }
 
+    @Override
     public String toString() {
         return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", section=" + section + "]";
     }
