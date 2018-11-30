@@ -26,6 +26,7 @@ package add.gui;
 import add.entity.Utenti;
 import add.util.HibernateUtil;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -149,7 +150,7 @@ public class UserPanel extends JPanel {
      * @param e Button action event.
      */
     private void sendButtonActionPerformed(ActionEvent e) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
 
         Utenti user = new Utenti();
