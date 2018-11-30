@@ -22,15 +22,68 @@
  * THE SOFTWARE.
  */
 package com.websystique.hibernate.model;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
 /**
  * 
  * @author giuliobosco
  * @version 1.0
  */
-public class Student {
+@Entity
+@Table(name = "STUDENT")
+public class Student implements Serializable {
     // -------------------------------------------------------------------------------------------------------- Costants
     // ------------------------------------------------------------------------------------------------------ Attributes
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
+
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
+
+    @Column(name = "SECTION", nullable = false)
+    private String section;
+
     // ----------------------------------------------------------------------------------------------- Getters & Setters
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getSection() {
+        return this.section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
     // ---------------------------------------------------------------------------------------------------- Constructors
     // ---------------------------------------------------------------------------------------------------- Help Methods
     // ------------------------------------------------------------------------------------------------- General Methods
