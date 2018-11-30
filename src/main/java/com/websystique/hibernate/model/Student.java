@@ -108,6 +108,10 @@ public class Student implements Serializable {
         return true;
     }
 
+    public String toString() {
+        return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", section=" + section + "]";
+    }
+
     // ------------------------------------------------------------------------------------------------- General Methods
     // ----------------------------------------------------------------------------------------------- Static Components
     
