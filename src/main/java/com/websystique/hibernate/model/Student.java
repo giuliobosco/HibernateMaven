@@ -94,6 +94,20 @@ public class Student implements Serializable {
         return prime * n + id;
     }
 
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (this.id != ((Student) obj).id) {
+            return false;
+        }
+
+        return true;
+    }
+
     // ------------------------------------------------------------------------------------------------- General Methods
     // ----------------------------------------------------------------------------------------------- Static Components
     
